@@ -56,14 +56,19 @@ class Owner
   end
 
   def sell_pets
-    all_pets = []
-    all_pets << Cat.all.select{ |cat| cat.owner == self }
-    all_pets << Dog.all.select{ |dog| dog.owner == self }
-
-    binding.pry
+    all_pets = self.dogs + self.cats
+    all_pets.each do |pet| 
+      pet.mood = "nervous"  
+      pet.owner = nil
+    end
   end
 
-  # binding.pry
+  def list_pets
+    "I have #{self.dogs.count} dog(s), and #{self.cats.count} cat(s)."
+  end
+
+  
+
+# binding.pry
 
 end
-
